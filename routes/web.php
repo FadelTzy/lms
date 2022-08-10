@@ -1,8 +1,9 @@
 <?php
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PembelajaranController;
 use App\Http\Controllers\MatakuliahController;
+use App\Http\Controllers\MateriController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +43,18 @@ Route::prefix('admin')->group(function () {
     Route::post('/data-matkul', [MatakuliahController::class, 'matkulstore'])->name('matkul.store');
     Route::post('/data-matkul/update', [MatakuliahController::class, 'matkulupdate'])->name('matkul.update');
     Route::delete('/data-matkul/{id}', [MatakuliahController::class, 'matkulhapus'])->name('matkul.destroy');
+
+    //pembelajaran
+    Route::get('/data-pembelajaran', [PembelajaranController::class, 'pembelajaran'])->name('pembelajaran.index');
+    Route::post('/data-pembelajaran', [PembelajaranController::class, 'pembelajaranstore'])->name('pembelajaran.store');
+    Route::post('/data-pembelajaran/update', [PembelajaranController::class, 'pembelajaranupdate'])->name('pembelajaran.update');
+    Route::delete('/data-pembelajaran/{id}', [PembelajaranController::class, 'pembelajaranhapus'])->name('pembelajaran.destroy');
+    //materi
+    Route::get('/data-materi/{id}', [materiController::class, 'materi']);
+    Route::post('/data-materi', [materiController::class, 'materistore'])->name('materi.store');
+    Route::post('/data-materi/update', [materiController::class, 'materiupdate'])->name('materi.update');
+    Route::delete('/data-materi/{id}', [materiController::class, 'materihapus'])->name('materi.destroy');
+
 });
 });
 Route::get('/dashboard', function () {

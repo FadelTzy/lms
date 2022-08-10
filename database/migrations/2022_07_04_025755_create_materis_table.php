@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('materis', function (Blueprint $table) {
             $table->id();
+            $table->string('id_pembelajaran')->nullable();
             $table->string('kode_mk')->nullable();
             $table->string('nama_materi')->nullable();
-            $table->string('tgl_materi')->nullable();
             $table->string('deskripsi')->nullable();
 
             $table->timestamps();

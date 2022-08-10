@@ -26,6 +26,11 @@
                 <span>Data Mata Kuliah</span></a>
 
         </li>
+        <li class="nav-item {{ Request::segment(2) == 'data-pembelajaran' ? 'active' : '' }}">
+            <a href=" {{ route('pembelajaran.index') }}" class="nav-link"><i class="fas fa-columns"></i>
+                <span>Data Pembelajaran</span></a>
+
+        </li>
 
         <li class="menu-header">Manajemen Admin</li>
 
