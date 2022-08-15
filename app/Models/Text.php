@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Text extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    public function oMateri()
+    {
+        return $this->hasOne(Materi::class, 'id_pembelajaran', 'id_materi');
+    }
 }

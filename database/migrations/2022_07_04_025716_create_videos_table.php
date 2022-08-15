@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
             $table->string('id_materi')->nullable();
-            $table->string('isi')->nullable();
+            $table->string('link')->nullable();
+            $table->string('judul')->nullable();
             $table->string('tgl_video')->nullable();
 
             $table->timestamps();

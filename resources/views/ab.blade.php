@@ -54,7 +54,7 @@
 
 
 
-    <script src="{{ asset('stisla/assets/modules/chart.min.js') }}"></script>
+    {{-- <script src="{{ asset('stisla/assets/modules/chart.min.js') }}"></script> --}}
 
 
     <!-- JS Libraies -->

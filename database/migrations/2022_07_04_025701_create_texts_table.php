@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('id_materi')->nullable();
             $table->string('tgl_text')->nullable();
-            $table->string('isi')->nullable();
+            $table->longText('isi')->nullable();
             $table->string('nama_text')->nullable();
 
             $table->timestamps();

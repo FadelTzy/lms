@@ -54,6 +54,22 @@ Route::prefix('admin')->group(function () {
     Route::post('/data-materi', [materiController::class, 'materistore'])->name('materi.store');
     Route::post('/data-materi/update', [materiController::class, 'materiupdate'])->name('materi.update');
     Route::delete('/data-materi/{id}', [materiController::class, 'materihapus'])->name('materi.destroy');
+    //text
+    Route::get('/data-materi/{id}/text', [materiController::class, 'materitext']);
+    Route::post('/data-materi/text', [materiController::class, 'materitextstore'])->name('materitext.store');
+    Route::post('/data-materi/textup', [materiController::class, 'materitextupdate'])->name('materitext.update');
+    Route::delete('/data-materi/{id}/text', [materiController::class, 'materitexthapus']);
+
+    Route::get('/data-materi/{id}/file', [materiController::class, 'materifile']);
+    Route::post('/data-materi/file', [materiController::class, 'materifilestore'])->name('materifile.store');
+    Route::post('/data-materi/fileup', [materiController::class, 'materifileupdate'])->name('materifile.update');
+    Route::delete('/data-materi/{id}/file', [materiController::class, 'materifilehapus']);
+
+    Route::get('/data-materi/{id}/video', [materiController::class, 'materivideo']);
+    Route::post('/data-materi/video', [materiController::class, 'materivideostore'])->name('materivideo.store');
+    Route::post('/data-materi/videoup', [materiController::class, 'materivideoupdate'])->name('materivideo.update');
+    Route::delete('/data-materi/{id}/video', [materiController::class, 'materivideohapus']);
+
 
 });
 });

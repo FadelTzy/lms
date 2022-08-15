@@ -21,4 +21,8 @@ class pembelajaran extends Model
     {
         return $this->hasOne(Matakuliah::class, 'id', 'id_matkul');
     }
+    public function oMateri()
+    {
+        return $this->hasOne(Materi::class, 'id_pembelajaran', 'id');
+    }
 }
