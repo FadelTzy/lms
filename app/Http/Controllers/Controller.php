@@ -15,6 +15,38 @@ use Illuminate\Support\Facades\Hash;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function profil()
+    {
+        return view('admin.profil');
+    }
+    public function storeprofil(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255', 'unique:users,email,' . $request->id],
+        ]);
+
+        if ($validator->fails()) {
+            $data = ['status' => 'error', 'data' => $validator->errors()];
+            return redirect()
+                ->back()
+                ->with($data);
+        }
+        $user = User::findorfail($request->id);
+        if ($user) {
+            $user->name = $request->nama;
+            $user->no = $request->no;
+
+            $user->email = $request->email;
+            if ($request->pass != '' || $request->pass != null) {
+                $user->password = Hash::make($request->pass);
+            }
+            $user->save();
+            return redirect()
+                ->back()
+                ->with('message', 'success');
+        }
+    }
     public function mahasiswahapus($id)
     {
         $data = User::where('id', $id)->delete();

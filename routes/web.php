@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PembelajaranController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\MateriController;
+use App\Http\Controllers\TugasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,8 +71,15 @@ Route::prefix('admin')->group(function () {
     Route::post('/data-materi/videoup', [materiController::class, 'materivideoupdate'])->name('materivideo.update');
     Route::delete('/data-materi/{id}/video', [materiController::class, 'materivideohapus']);
 
+    Route::get('/data-materi/{id}/tugas', [TugasController::class, 'materitugas']);
+    Route::post('/data-materi/tugas', [TugasController::class, 'materitugasstore'])->name('materitugas.store');
+    Route::post('/data-materi/tugasup', [TugasController::class, 'materitugasupdate'])->name('materitugas.update');
+    Route::delete('/data-materi/{id}/tugas', [TugasController::class, 'materitugashapus']);
+
 
 });
+Route::get('/profil', [Controller::class, 'profil']);
+Route::post('/profil', [Controller::class, 'storeprofil']);
 });
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('id_materi')->nullable();
             $table->string('nama')->nullable();
+            $table->string('file')->nullable();
             $table->string('isi')->nullable();
             $table->timestamps();
         });

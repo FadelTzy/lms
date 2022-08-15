@@ -185,6 +185,9 @@ class MateriController extends Controller
                       <a class='dropdown-item' target='_blank' href='". url('admin/data-materi/') .'/' . $data->id_pembelajaran . '/file' ."'>File</a>
                       <a class='dropdown-item' target='_blank' href='". url('admin/data-materi/') .'/' . $data->id_pembelajaran . '/video' ."'>Video</a>
                     </div>
+                    <li class='list-inline-item'>
+                    <a type='button'  target='_blank' href='". url('admin/data-materi/') .'/' . $data->id_pembelajaran . '/tugas' ."'  class='btn btn-sm btn-info btn-xs mb-1'>Tugas</a>
+                    </li>
                     </li>
                 </ul>";
                     return $btn;

@@ -7,7 +7,7 @@
     </div>
     <ul class="sidebar-menu">
         <li class="menu-header">Menu</li>
-        <li class="nav-item {{ Request::segment(2) == '' ? 'active' : '' }}">
+        <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
             <a href="{{ route('admin') }}" class="nav-link "><i
                     class="fas fa-fire"></i><span>Dashboard</span></a>
         </li>
@@ -33,7 +33,9 @@
         </li>
 
         <li class="menu-header">Manajemen Admin</li>
-
+        <li class="{{ Request::segment(1) == 'profil' ? 'active' : '' }}"><a class="nav-link"
+            href="{{ url('profil') }}"><i class="fas fa-pencil-ruler"></i>
+            <span>Profil Admin</span></a></li>
      
     </ul>
 

@@ -14,7 +14,7 @@
 @endsection
 
 @section('title')
-    Data Materi Text Pembelajaran
+    Data Tugas 
 @endsection
 @section('content')
     <section class="section">
@@ -29,7 +29,7 @@
 
                         <div class="card-body">
                             <div class="float-left">
-                                <h4>Manajemen Data Materi Text - {{ $user->oMateri->nama_materi }}</h4>
+                                <h4>Manajemen Data Tugas - {{ $user->oMateri->nama_materi }}</h4>
 
                             </div>
                             <div class="float-right">
@@ -51,8 +51,8 @@
                                                 no
                                             </th>
                                             <th>Materi Pokok</th>
-                                            <th>Judul</th>
-                                            <th>Tanggal Input</th>
+                                            <th>Tugas</th>
+                                            <th>File</th>
                                             <th>Aksi</th>
 
                                         </tr>
@@ -91,10 +91,14 @@
                                     </div>
 
                                 </div>
-
                                 <div class="form-group">
                                     <label for="Nama">Isi</label>
                                     <textarea name="isi" class="summernote"></textarea>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Nama">File</label>
+                                    <input type="file" name="file" class="form-control">
 
                                 </div>
 
@@ -119,7 +123,7 @@
         <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Data Pembelajaran</h5>
+                    <h5 class="modal-title">Edit Data </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -137,10 +141,15 @@
                                 </div>
 
                             </div>
-
                             <div class="form-group">
                                 <label for="Nama">Isi</label>
                                 <textarea name="isi" class="summernoteu"></textarea>
+
+                            </div>
+                       
+                            <div class="form-group">
+                                <label for="Nama">File</label>
+                                <input type="file" name="file" id="fileu" class="form-control">
 
                             </div>
 
@@ -236,6 +245,11 @@
             dialogsInBody: true,
             minHeight: 250,
         });
+        function lihat(id) {
+            $("#lihatModal").modal('show');
+            $("#judulnya").html(id.nama);
+            $("#isinya").html(id.isi)
+        }
         jQuery(document).ready(function() {
 
             tabel = $("#dt").DataTable({
@@ -268,12 +282,13 @@
                         width: "20%",
 
                     },
+               
 
                 ],
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: url + '/admin/data-materi/' + "{{ $user->id }}" + '/text',
+                    url: url + '/admin/data-materi/' + "{{ $user->id }}" + '/tugas',
                 },
                 columns: [{
                         nama: 'DT_RowIndex',
@@ -285,13 +300,14 @@
                             return data['o_materi']['nama_materi'];
                         },
                     }, {
-                        nama: 'nama_text',
-                        data: 'nama_text'
+                        nama: 'nama',
+                        data: 'nama'
                     },
                     {
-                        nama: 'tgl_text',
-                        data: 'tgl_text'
+                        nama: 'filenya',
+                        data: 'filenya'
                     },
+                  
 
                     {
                         nama: 'aksi',
@@ -312,7 +328,7 @@
             var data = $(this).serialize();
             $.LoadingOverlay("show");
             $.ajax({
-                url: '{{ route('materitext.store') }}',
+                url: '{{ route('materitugas.store') }}',
                 data: new FormData(this),
                 type: "POST",
                 contentType: false,
@@ -357,7 +373,7 @@
             var data = $(this).serialize();
             $.LoadingOverlay("show");
             $.ajax({
-                url: '{{ route('materitext.update') }}',
+                url: '{{ route('materitugas.update') }}',
                 data: new FormData(this),
                 type: "POST",
                 contentType: false,
@@ -410,7 +426,7 @@
                 $.LoadingOverlay("show");
 
                 $.ajax({
-                    url: url + '/admin/data-materi/' + id +'/text',
+                    url: url + '/admin/data-materi/' + id +'/tugas',
                     type: "delete",
                     success: function(e) {
                         $.LoadingOverlay("hide");
@@ -429,47 +445,12 @@
             }
         }
 
-        function staffaktif(id) {
-            data = confirm("Klik Ok Untuk Melanjutkan");
-            console.log(id);
-            if (data) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.LoadingOverlay("show");
-
-                $.ajax({
-                    url: url + '/admin/periode/' + id + '/aktif',
-                    type: "post",
-                    success: function(e) {
-                        $.LoadingOverlay("hide");
-                        if (e == 'success') {
-                            iziToast.success({
-                                title: 'Succes!',
-                                message: 'Data tersimpan',
-                                position: 'topRight'
-                            });
-                            tabel.ajax.reload();
-
-                        }
-                    }
-                })
-
-            }
-        }
-        function lihat(id) {
-            $("#lihatModal").modal('show');
-            $("#judulnya").html(id.nama_text);
-            $("#isinya").html(id.isi)
-        }
+    
         function staffupd(id) {
             $('#up').modal('show');
 
-            $("#judulu").val(id.nama_text);
+            $("#judulu").val(id.nama);
             $(".summernoteu").summernote('code',id.isi);
-
             $("#idu").val(id.id);
 
 
