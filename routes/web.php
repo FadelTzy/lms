@@ -5,6 +5,7 @@ use App\Http\Controllers\PembelajaranController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\TugasController;
+use App\Http\Controllers\SettingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::prefix('admin')->group(function () {
     
+    Route::get('/data-pengaturan', [SettingController::class, 'pengaturan'])->name('pengaturan.index');
+    Route::post('/data-pengaturan/update', [SettingController::class, 'pengaturanupdate'])->name('pengaturan');
+
     Route::get('/', [Controller::class, 'index'])->name('admin');
     Route::get('/data-mahasiswa', [Controller::class, 'mahasiswa'])->name('mahasiswa.index');
     Route::post('/data-mahasiswa', [Controller::class, 'mahasiswastore'])->name('mahasiswa.store');

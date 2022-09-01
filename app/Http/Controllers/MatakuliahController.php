@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use Illuminate\Http\Request;
 use App\Models\Matakuliah;
+use App\Models\Materi;
+use App\Models\pembelajaran;
+use App\Models\Text;
+use App\Models\Tugas;
+use App\Models\Video;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 class MatakuliahController extends Controller
@@ -12,6 +18,18 @@ class MatakuliahController extends Controller
     {
             $data = Matakuliah::where('id',$id)->delete();
             if ($data) {
+                $pem = pembelajaran::where('id_matkul',$id)->first();
+                if ($pem) {
+                    $materi = Materi::where('id_pembelajaran',$pem->id)->first();
+                    $pem->delete();
+                    if ($materi) {
+                        Text::where('id_materi',$materi->id)->delete();
+                        Video::where('id_materi',$materi->id)->delete();
+                        File::where('id_materi',$materi->id)->delete();
+                        Tugas::where('id_materi',$materi->id)->delete();
+                    $materi->delete();
+                    }
+                }
                 return 'success';
             }
     }

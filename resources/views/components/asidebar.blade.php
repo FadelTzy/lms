@@ -33,6 +33,9 @@
         </li>
 
         <li class="menu-header">Manajemen Admin</li>
+        <li class="{{ Request::segment(2) == 'data-pengaturan' ? 'active' : '' }}"><a class="nav-link"
+            href="{{ route('pengaturan.index') }}"><i class="fas fa-pencil-ruler"></i>
+            <span>Pengaturan</span></a></li>
         <li class="{{ Request::segment(1) == 'profil' ? 'active' : '' }}"><a class="nav-link"
             href="{{ url('profil') }}"><i class="fas fa-pencil-ruler"></i>
             <span>Profil Admin</span></a></li>

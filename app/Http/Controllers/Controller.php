@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Matakuliah;
+use App\Models\pembelajaran;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -56,7 +58,12 @@ class Controller extends BaseController
     }
     public function index()
     {
-        return view('admin.dashboard');
+        $matkul = Matakuliah::count();
+        $user = User::where('role',2)->count();
+        $mahasiswa = User::where('role',3)->count();
+        $pembelajaran = pembelajaran::count();
+
+        return view('admin.dashboard',compact('matkul','user','mahasiswa','pembelajaran'));
     }
     public function mahasiswastore(Request $request)
     {

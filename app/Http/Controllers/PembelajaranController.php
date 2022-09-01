@@ -7,13 +7,26 @@ use App\Models\pembelajaran;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\Matakuliah;
+use App\Models\Materi;
 use App\Models\User;
+use App\Models\Text;
+use App\Models\Video;
+use App\Models\Tugas;
+use App\Models\File;
 class PembelajaranController extends Controller
 {
     public function pembelajaranhapus($id)
     {
         $data = pembelajaran::where('id', $id)->delete();
         if ($data) {
+           $m = Materi::where('id_pembelajaran',$id)->first();
+           if ($m) {
+            Text::where('id_materi',$m->id)->delete();
+            Video::where('id_materi',$m->id)->delete();
+            File::where('id_materi',$m->id)->delete();
+            Tugas::where('id_materi',$m->id)->delete();
+            $m->delete();
+           }
             return 'success';
         }
     }

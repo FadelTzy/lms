@@ -36,6 +36,7 @@
                                 <h4>Total Mata Kuliah</h4>
                             </div>
                             <div class="card-body">
+                                {{$matkul}}
                             </div>
                         </div>
                     </div>
@@ -50,7 +51,7 @@
                                 <h4> Total Dosen</h4>
                             </div>
                             <div class="card-body">
-
+                                {{$user}}
                             </div>
                         </div>
                     </div>
@@ -65,7 +66,7 @@
                                 <h4>Total Mahasiswa</h4>
                             </div>
                             <div class="card-body">
-
+                                {{$mahasiswa}}
                             </div>
                         </div>
                     </div>
@@ -77,10 +78,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Pusing</h4>
+                                <h4>Total Pembelajaran</h4>
                             </div>
                             <div class="card-body">
-
+                                {{$pembelajaran}}
                             </div>
                         </div>
                     </div>
